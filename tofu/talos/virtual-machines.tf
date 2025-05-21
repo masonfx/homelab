@@ -28,7 +28,7 @@ resource "proxmox_virtual_environment_vm" "this" {
 
   network_device {
     bridge      = "vmbr0"
-    vlan_id     = 20
+    #vlan_id     = 20
     mac_address = each.value.mac_address
   }
 
@@ -69,7 +69,7 @@ resource "proxmox_virtual_environment_vm" "this" {
     datastore_id = each.value.datastore_id
     dns {
       domain  = "masonfox.me"
-      servers = ["192.168.20.1"]
+      servers = ["192.168.10.1"]
     }
     ip_config {
       ipv4 {

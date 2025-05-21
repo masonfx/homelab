@@ -10,7 +10,7 @@ module "talos" {
 
 
   image = {
-    version        = var.image.version
+    version        = var.image.talos_version
     update_version = var.image.update_version
     schematic      = file("${path.module}/talos/image/schematic.yaml")
   }
@@ -27,9 +27,9 @@ module "talos" {
   cluster = {
     name               = "talos"
     endpoint           = "api.dev.masonfox.me"
-    gateway            = "192.168.20.1"  # Network gateway
-    vip                = "192.168.20.20" # Control plane VIP
-    talos_version      = var.image.version
+    gateway            = "192.168.10.1"  # Network gateway
+    vip                = "192.168.10.20" # Control plane VIP
+    talos_version      = var.image.talos_version
     proxmox_cluster    = var.proxmox.cluster_name
     kubernetes_version = var.image.kube_version
   }
@@ -38,7 +38,7 @@ module "talos" {
     "ctrl-01" = {
       host_node     = "pve0"
       machine_type  = "controlplane"
-      ip            = "192.168.20.21"
+      ip            = "192.168.10.21"
       mac_address   = "bc:24:11:e6:ba:21"
       vm_id         = 8101
       cpu           = 2
@@ -49,7 +49,7 @@ module "talos" {
     "ctrl-02" = {
       host_node     = "pve0"
       machine_type  = "controlplane"
-      ip            = "192.168.20.22"
+      ip            = "192.168.10.22"
       mac_address   = "bc:24:11:e6:ba:22"
       vm_id         = 8102
       cpu           = 2
@@ -60,7 +60,7 @@ module "talos" {
     "ctrl-03" = {
       host_node     = "pve0"
       machine_type  = "controlplane"
-      ip            = "192.168.20.23"
+      ip            = "192.168.10.23"
       mac_address   = "bc:24:11:e6:ba:23"
       vm_id         = 8103
       cpu           = 2
@@ -70,7 +70,7 @@ module "talos" {
     "work-01" = {
       host_node     = "pve0"
       machine_type  = "worker"
-      ip            = "192.168.20.31"
+      ip            = "192.168.10.31"
       mac_address   = "bc:24:11:e6:ba:31"
       vm_id         = 8201
       cpu           = 6
@@ -89,7 +89,7 @@ module "talos" {
     "work-02" = {
       host_node     = "pve0"
       machine_type  = "worker"
-      ip            = "192.168.20.32"
+      ip            = "192.168.10.32"
       mac_address   = "bc:24:11:e6:ba:32"
       vm_id         = 8202
       cpu           = 6

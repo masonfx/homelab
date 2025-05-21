@@ -1,0 +1,26 @@
+{
+  "name": "CLI Toolbox Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/sh",
+    "extensions.verifySignature": false
+  },
+  "extensions": [
+    "hashicorp.terraform",
+    "redhat.vscode-yaml",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "davidanson.vscode-markdownlint",
+    "golang.go",
+    "tamasfe.even-better-toml"
+  ],
+  "forwardPorts": [],
+  "postCreateCommand": "kubectl version --client && argocd version --client && talosctl version --client && tofu version",
+  "remoteUser": "root",
+  "mounts": [
+    // mount entire .ssh folder
+    "source=${localEnv:HOME}/.ssh/id_rsa,target=/root/.ssh/id_rsa,type=bind,readonly"
+  ],
+}
