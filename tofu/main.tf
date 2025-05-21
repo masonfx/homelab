@@ -26,72 +26,54 @@ module "talos" {
 
   cluster = {
     name               = "talos"
-    endpoint           = "api.kube.pc-tips.se"
-    gateway            = "10.25.150.1"  # Network gateway
-    vip                = "10.25.150.10" # Control plane VIP
+    endpoint           = "api.dev.masonfox.me"
+    gateway            = "192.168.20.1"  # Network gateway
+    vip                = "192.168.20.20" # Control plane VIP
     talos_version      = "v1.10.2"
     proxmox_cluster    = "kube"
     kubernetes_version = "1.33.1" # renovate: github-releases=kubernetes/kubernetes
   }
 
   nodes = {
-    "ctrl-00" = {
-      host_node     = "host3"
-      machine_type  = "controlplane"
-      ip            = "10.25.150.11"
-      mac_address   = "bc:24:11:e6:ba:07"
-      vm_id         = 8101
-      cpu           = 6
-      ram_dedicated = 7168
-      update        = false
-      igpu          = false
-    }
     "ctrl-01" = {
-      host_node     = "host3"
+      host_node     = "pve0"
       machine_type  = "controlplane"
-      ip            = "10.25.150.12"
-      mac_address   = "bc:24:11:44:94:5c"
-      vm_id         = 8102
-      cpu           = 6
-      ram_dedicated = 6144
+      ip            = "192.168.20.21"
+      mac_address   = "bc:24:11:e6:ba:21"
+      vm_id         = 8101
+      cpu           = 2
+      ram_dedicated = 4096
       update        = false
       igpu          = false
     }
     "ctrl-02" = {
-      host_node     = "host3"
+      host_node     = "pve0"
       machine_type  = "controlplane"
-      ip            = "10.25.150.13"
-      mac_address   = "bc:24:11:1e:1d:2f"
-      vm_id         = 8103
-      cpu           = 6
-      ram_dedicated = 6144
+      ip            = "192.168.20.22"
+      mac_address   = "bc:24:11:e6:ba:22"
+      vm_id         = 8102
+      cpu           = 2
+      ram_dedicated = 4096
       update        = false
+      igpu          = false
     }
-    "work-00" = {
-      host_node     = "host3"
-      machine_type  = "worker"
-      ip            = "10.25.150.21"
-      mac_address   = "bc:24:11:64:5b:cb"
-      vm_id         = 8201
-      cpu           = 8
-      ram_dedicated = 10240
+    "ctrl-03" = {
+      host_node     = "pve0"
+      machine_type  = "controlplane"
+      ip            = "192.168.20.23"
+      mac_address   = "bc:24:11:e6:ba:23"
+      vm_id         = 8103
+      cpu           = 2
+      ram_dedicated = 4096
       update        = false
-      disks = {
-        longhorn = {
-          device     = "/dev/sdb"
-          size       = "180G"
-          type       = "scsi"
-          mountpoint = "/var/lib/longhorn"
-        }
-      }
     }
     "work-01" = {
-      host_node     = "host3"
+      host_node     = "pve0"
       machine_type  = "worker"
-      ip            = "10.25.150.22"
-      mac_address   = "bc:24:11:c9:22:c3"
-      vm_id         = 8202
-      cpu           = 8
+      ip            = "192.168.20.31"
+      mac_address   = "bc:24:11:e6:ba:31"
+      vm_id         = 8201
+      cpu           = 6
       ram_dedicated = 10240
       update        = false
       disks = {
@@ -104,12 +86,12 @@ module "talos" {
       }
     }
     "work-02" = {
-      host_node     = "host3"
+      host_node     = "pve0"
       machine_type  = "worker"
-      ip            = "10.25.150.23"
-      mac_address   = "bc:24:11:6f:20:03"
-      vm_id         = 8203
-      cpu           = 8
+      ip            = "192.168.20.32"
+      mac_address   = "bc:24:11:e6:ba:32"
+      vm_id         = 8202
+      cpu           = 6
       ram_dedicated = 10240
       update        = false
       disks = {
