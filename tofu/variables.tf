@@ -6,12 +6,25 @@ variable "proxmox" {
     insecure     = bool
     username     = string
     api_token    = string
+    ssh_key      = string
   })
   sensitive = true
 }
 
-# Storage pool and disk owner variables have been removed as they are unused
+variable image {
+  type = object({
+    talos_version     = string
+    update_version    = string
+    kube_version      = string
+    schematic         = string
+    platform          = string
+    arch              = string
+    proxmox_datastore = string
+    factory_url       = string
+  })
+}
 
+# Storage pool and disk owner variables have been removed as they are unused
 
 variable "nodes" {
   description = "Map of Talos nodes to create"

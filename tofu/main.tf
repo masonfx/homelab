@@ -10,8 +10,8 @@ module "talos" {
 
 
   image = {
-    version        = "v1.10.2"
-    update_version = "v1.10.2" # renovate: github-releases=siderolabs/talos
+    version        = var.image.version
+    update_version = var.image.update_version
     schematic      = file("${path.module}/talos/image/schematic.yaml")
   }
 
@@ -29,9 +29,9 @@ module "talos" {
     endpoint           = "api.dev.masonfox.me"
     gateway            = "192.168.20.1"  # Network gateway
     vip                = "192.168.20.20" # Control plane VIP
-    talos_version      = "v1.10.2"
-    proxmox_cluster    = "kube"
-    kubernetes_version = "1.33.1" # renovate: github-releases=kubernetes/kubernetes
+    talos_version      = var.image.version
+    proxmox_cluster    = var.proxmox.cluster_name
+    kubernetes_version = var.image.kube_version
   }
 
   nodes = {
@@ -75,6 +75,7 @@ module "talos" {
       vm_id         = 8201
       cpu           = 6
       ram_dedicated = 10240
+      igpu          = false
       update        = false
       disks = {
         longhorn = {
@@ -93,6 +94,7 @@ module "talos" {
       vm_id         = 8202
       cpu           = 6
       ram_dedicated = 10240
+      igpu          = false
       update        = false
       disks = {
         longhorn = {

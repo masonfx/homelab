@@ -31,7 +31,7 @@ variable "nodes" {
   type = map(object({
     host_node     = string
     machine_type  = string
-    datastore_id = optional(string, "velocity")
+    datastore_id = optional(string, "local-lvm")
     ip            = string
     mac_address   = string
     vm_id         = number
@@ -88,7 +88,7 @@ variable "inline_manifests" {
 variable "download_node" {
   description = "Proxmox node to use for downloading Talos images"
   type        = string
-  default     = "host3"  # For backward compatibility
+  default     = "pve0"  # For backward compatibility
 }
 
 

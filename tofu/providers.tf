@@ -25,8 +25,9 @@ provider "proxmox" {
 
   api_token = var.proxmox.api_token
   ssh {
-    agent    = true
-    username = var.proxmox.username
+    agent       = false
+    private_key = file(var.proxmox.ssh_key)
+    username    = var.proxmox.username
   }
 }
 

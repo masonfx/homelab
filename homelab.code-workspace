@@ -1,6 +1,5 @@
 {
   "folders": [
-
     {
       "name": "k8s",
       "path": "k8s"
@@ -14,18 +13,16 @@
       "path": ".github"
     },
     {
-      "name": "website",
-      "path": "website"
-    },
-    {
       "name": "root",
       "path": "."
     },
+    {
+      "name": "proxmox",
+      "path": "proxmox"
+    }
   ],
-
   "settings": {
     // File associations
-
     "files.associations": {
       "*.yaml": "yaml",
       "*.yml": "yaml",
@@ -33,16 +30,16 @@
       "*.tfvars": "terraform",
       "Tiltfile": "python"
     },
-
     // Editor settings
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.rulers": [120],
+    "editor.rulers": [
+      120
+    ],
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit"
     },
-
     // YAML settings
     "yaml.format.enable": true,
     "yaml.validate": true,
@@ -50,47 +47,37 @@
       "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.formatOnSave": false
     },
-
     // Terraform/OpenTofu settings
     "[terraform]": {
       "editor.formatOnSave": true,
       "editor.defaultFormatter": "hashicorp.terraform"
     },
     "terraform.experimentalFeatures.validateOnSave": true,
-
     // Kubernetes settings
     "kubernetes.autoComplete": true,
     "kubernetes.validate": true,
-
     // Prettier settings
     "prettier.printWidth": 120,
     "prettier.singleQuote": true,
     "prettier.trailingComma": "es5",
     "prettier.proseWrap": "always",
-
     // Search settings
     "search.exclude": {
       "**/.git": true,
       "**/node_modules": true,
       "**/*.tfstate*": true
     },
-
     // Git settings
     "git.enableCommitSigning": false,
     "git.autofetch": true,
-
     // Extensions recommendations
     "extensions.ignoreRecommendations": false,
-
     // File saving
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
-
     // Terminal
     "terminal.integrated.defaultProfile.linux": "bash",
     "terminal.integrated.persistentSessionReviveProcess": "never",
-
-
     "github.copilot.selectedCompletionModel": "gpt-4o-copilot",
     "github.copilot.chat.followUps": true,
     "github.copilot.chat.edits.codesearch.enabled": true,
