@@ -8,7 +8,7 @@ spec:
     - name: internal
       namespace: gateway
   hostnames:
-    - "argocd.pc-tips.se"
+    - "argocd.dev.masonfox.me"
   rules:
     - matches:
         - path:

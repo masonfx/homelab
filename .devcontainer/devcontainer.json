@@ -21,6 +21,8 @@
   "remoteUser": "root",
   "mounts": [
     // mount entire .ssh folder
-    "source=${localEnv:HOME}/.ssh/id_rsa,target=/root/.ssh/id_rsa,type=bind,readonly"
-  ],
+    "source=${localEnv:HOME}/.ssh/id_rsa,target=/root/.ssh/id_rsa,type=bind,readonly",
+    "source=${localEnv:HOME}/.talos/,target=/root/.talos,type=bind",
+    "source=${localEnv:HOME}/.kube/,target=/root/.kube,type=bind"
+  ]
 }

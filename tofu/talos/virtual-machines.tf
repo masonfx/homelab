@@ -41,7 +41,8 @@ resource "proxmox_virtual_environment_vm" "this" {
     ssd          = true
     file_format  = "raw"
     size         = 40
-    file_id      = each.value.update == true ? proxmox_virtual_environment_download_file.update[0].id : proxmox_virtual_environment_download_file.this.id
+    #file_id      = each.value.update == true ? proxmox_virtual_environment_download_file.update[0].id : proxmox_virtual_environment_download_file.this.id
+    file_id = proxmox_virtual_environment_download_file.per_host[each.value.host_node].id
   }
 
   # Create additional disks defined in the node configuration
@@ -73,7 +74,7 @@ resource "proxmox_virtual_environment_vm" "this" {
     }
     ip_config {
       ipv4 {
-        address = "${each.value.ip}/24"
+        address = "${each.value.ip}/26"
         gateway = var.cluster.gateway
       }
     }
