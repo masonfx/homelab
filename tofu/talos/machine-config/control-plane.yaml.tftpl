@@ -29,9 +29,13 @@ machine:
     hostname: ${hostname}
     interfaces:
       - interface: eth0
-        dhcp: true
+        dhcp: false
         vip:
           ip: ${cluster.vip}
+    extraHostEntries:
+      - ip: ${cluster.vip}
+        aliases:
+          - ${cluster.endpoint}
 
   nodeLabels:
     topology.kubernetes.io/region: ${cluster_name}
@@ -41,17 +45,17 @@ cluster:
   coreDNS:
     disabled: true
   allowSchedulingOnControlPlanes: false
-  clusterName: dev.masonfox.me
+  clusterName: ${cluster.domain}
   apiServer:
     # extraArgs:
-    #   oidc-issuer-url: https://authelia.dev.masonfox.me
+    #   oidc-issuer-url: https://authelia.${cluster.domain}
     #   oidc-client-id: kubectl
     #   oidc-username-claim: preferred_username
     #   oidc-username-prefix: 'authelia:'
     #   oidc-groups-claim: groups
     #   oidc-groups-prefix: 'authelia:'
   network:
-    dnsDomain: dev.masonfox.me
+    dnsDomain: ${cluster.domain}
     cni:
       name: none
   proxy:

@@ -16,6 +16,7 @@ variable "cluster" {
   description = "Cluster configuration"
   type = object({
     name              = string
+    domain            = string
     endpoint          = string
     gateway           = string
     vip               = string
@@ -31,19 +32,19 @@ variable "nodes" {
   type = map(object({
     host_node     = string
     machine_type  = string
-    datastore_id = optional(string, "local-lvm")
+    datastore_id  = optional(string, "local-lvm")
     ip            = string
     mac_address   = string
     vm_id         = number
     cpu           = number
     ram_dedicated = number
-    update = optional(bool, false)
-    igpu = optional(bool, false)
-    disks = optional(map(object({
-      device = string
-      size = string
-      type = string
-      mountpoint = string
+    update        = optional(bool, false)
+    igpu          = optional(bool, false)
+    disks         = optional(map(object({
+      device      = string
+      size        = string
+      type        = string
+      mountpoint  = string
     })), {})
   }))
 }

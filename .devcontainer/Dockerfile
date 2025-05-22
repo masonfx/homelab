@@ -1,14 +1,17 @@
 FROM ghcr.io/opentofu/opentofu:minimal AS tofu
 
-FROM alpine:latest
+FROM alpine
 
 # ── Install dependencies ────────────────────────────────────────────────────
 RUN apk add --no-cache \
    git \
    curl \
    ca-certificates \
-   openssl && \
-   update-ca-certificates
+   openssl \
+   #update-ca-certificates \
+   libgcc \
+   libstdc++ \
+   gcompat
 
 # ── Fetch latest kubectl ───────────────────────────────────────────────────
 RUN KUBECTL_VER="$(curl -fsSL https://dl.k8s.io/release/stable.txt)" && \

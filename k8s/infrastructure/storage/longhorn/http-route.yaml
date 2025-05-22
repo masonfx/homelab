@@ -8,8 +8,8 @@ spec:
     - name: internal
       namespace: gateway
   hostnames:
-    - "longhorn.pc-tips.se"
-    - "longhorn-metrics.pc-tips.se"
+    - "longhorn.${cluster.domain}"
+    - "longhorn-metrics.${cluster.domain}"
   rules:
     - matches:
         - path:

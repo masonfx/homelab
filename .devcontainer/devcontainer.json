@@ -24,5 +24,15 @@
     "source=${localEnv:HOME}/.ssh/id_rsa,target=/root/.ssh/id_rsa,type=bind,readonly",
     "source=${localEnv:HOME}/.talos/,target=/root/.talos,type=bind",
     "source=${localEnv:HOME}/.kube/,target=/root/.kube,type=bind"
+  ],
+  "runArgs": [
+    "--add-host",
+    "pve1.dev.masonfox.me:192.168.10.11",
+    "--add-host",
+    "pve2.dev.masonfox.me:192.168.10.12",
+    "--add-host",
+    "pve3.dev.masonfox.me:192.168.10.13",
+    "--add-host",
+    "api.dev.masonfox.me:192.168.10.20"
   ]
 }
