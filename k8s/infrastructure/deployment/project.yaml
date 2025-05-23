@@ -8,7 +8,7 @@ metadata:
 spec:
   description: Project for core infrastructure deployment
   sourceRepos:
-    - 'https://github.com/theepicsaxguy/homelab'
+    - 'https://github.com/masonfx/homelab'
   destinations:
     - namespace: 'argocd'
       server: '*'

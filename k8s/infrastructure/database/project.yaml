@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   sourceRepos:
-    - 'https://github.com/theepicsaxguy/homelab'
+    - 'https://github.com/masonfx/homelab'
   destinations:
     - namespace: 'database'
       server: '*'

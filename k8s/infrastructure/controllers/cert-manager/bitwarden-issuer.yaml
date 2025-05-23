@@ -20,8 +20,8 @@ spec:
     organizations:
       - external-secrets.io
   dnsNames:
-    - external-secrets-bitwarden-sdk-server.external-secrets.svc.${cluster.domain}
-    - bitwarden-sdk-server.external-secrets.svc.${cluster.domain}
+    - external-secrets-bitwarden-sdk-server.external-secrets.svc.dev.masonfox.me
+    - bitwarden-sdk-server.external-secrets.svc.dev.masonfox.me
     - localhost
   ipAddresses:
     - 127.0.0.1
