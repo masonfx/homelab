@@ -1,5 +1,7 @@
 # Proxmox setup instructions
 
+## iGPU passthru and mapping
+
 In order to support iGPU mapping, perform the following steps on your Proxmox hosts:
 
 If AMD:
@@ -28,8 +30,14 @@ reboot
 verify the commands work:
 dmesg | grep -Ei "IOMMU|vfio-pci"
 
+## Proxmox GUI configurations
+
 Go into Proxmox GUI > Datacenter:
       > Resource mappings > Map each GPU PCI address to "iGPU"
+
+      > Permissions > API Tokens
+        > root@pam, ID: tofu, uncheck Privilege separation
+
       > Firewall
         > IPSet
           > pve-hosts: add IPs of PVE servers
