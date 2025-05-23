@@ -68,8 +68,8 @@ resource "proxmox_virtual_environment_vm" "this" {
   initialization {
     datastore_id = each.value.datastore_id
     dns {
-      domain  = "masonfox.me"
-      servers = ["192.168.10.1"]
+      domain  = "${var.cluster.domain}"
+      servers = ["${var.cluster.gateway}"]
     }
     ip_config {
       ipv4 {
