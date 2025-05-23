@@ -28,4 +28,24 @@ reboot
 verify the commands work:
 dmesg | grep -Ei "IOMMU|vfio-pci"
 
-Go into Proxmox GUI > Datacenter > Resource mappings > Map each GPU PCI address to "iGPU"
+Go into Proxmox GUI > Datacenter:
+      > Resource mappings > Map each GPU PCI address to "iGPU"
+      > Firewall
+        > IPSet
+          > pve-hosts: add IPs of PVE servers
+          > admins: add IPs of admin clients/subnets
+        > Alias
+          > k8s-api: IP of kubernetes API endpoint
+        > Security Group:
+          > allow-ssh:
+            > ACCEPT in SSH destination pve-hosts
+          > allow-icmp
+            > ACCEPT in Ping destination pve-hosts
+            > ACCEPT out Ping source pve-hosts
+          > allow-pveproxy
+            > ACCEPT in tcp/8006 source admins destination pve-hosts
+          > allow-k8s-apps
+            > ACCEPT in HTTPS destination k8s-api
+            > ACCEPT in TCP/6379 destination k8s-api
+
+Insert these security groups into the firewall on each PVE host
