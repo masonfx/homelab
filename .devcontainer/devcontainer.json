@@ -4,28 +4,33 @@
     "dockerfile": "Dockerfile",
     "context": "."
   },
-  "settings": {
-    "terminal.integrated.shell.linux": "/bin/sh",
-    "extensions.verifySignature": false
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.shell.linux": "/bin/sh",
+        "extensions.verifySignature": false
+      },
+      "extensions": [
+        "hashicorp.terraform",
+        "redhat.vscode-yaml",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "davidanson.vscode-markdownlint",
+        "golang.go",
+        "tamasfe.even-better-toml"
+      ]
+    }
   },
-  "extensions": [
-    "hashicorp.terraform",
-    "redhat.vscode-yaml",
-    "ms-kubernetes-tools.vscode-kubernetes-tools",
-    "davidanson.vscode-markdownlint",
-    "golang.go",
-    "tamasfe.even-better-toml"
-  ],
   "forwardPorts": [],
   "postCreateCommand": "kubectl version --client && argocd version --client && talosctl version --client && tofu version",
-  "remoteUser": "root",
+  "remoteUser": "1000",
   "mounts": [
-    // mount entire .ssh folder
-    "source=${localEnv:HOME}/.ssh/id_rsa,target=/root/.ssh/id_rsa,type=bind,readonly",
-    "source=${localEnv:HOME}/.talos/,target=/root/.talos,type=bind",
-    "source=${localEnv:HOME}/.kube/,target=/root/.kube,type=bind"
+    "source=${localEnv:HOME}/.ssh/id_rsa,target=/home/devfx/.ssh/id_rsa,type=bind,readonly",
+    "source=${localEnv:HOME}/.ssh/known_hosts,target=/home/devfx/.ssh/known_hosts,type=bind,readonly",
+    "source=${localEnv:HOME}/.talos/,target=/home/devfx/.talos,type=bind",
+    "source=${localEnv:HOME}/.kube/,target=/home/devfx/.kube,type=bind"
   ],
   "runArgs": [
+    "--dns=192.168.10.1",
     "--add-host",
     "pve1.dev.masonfox.me:192.168.10.11",
     "--add-host",

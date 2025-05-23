@@ -1,23 +1,26 @@
 FROM ghcr.io/opentofu/opentofu:minimal AS tofu
 
-FROM alpine
+#FROM alpine
+FROM debian:bookworm-slim
 
 # ── Install dependencies ────────────────────────────────────────────────────
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
    git \
    curl \
-   ca-certificates \
-   openssl \
-   #update-ca-certificates \
-   libgcc \
-   libstdc++ \
-   gcompat
+   && rm -rf /var/lib/apt/lists/*
+
+# ── Set up non-root user ────────────────────────────────────────────────────
+RUN groupadd -g 1000 devfx && useradd -m -u 1000 -g devfx devfx
 
 # ── Fetch latest kubectl ───────────────────────────────────────────────────
 RUN KUBECTL_VER="$(curl -fsSL https://dl.k8s.io/release/stable.txt)" && \
    curl -fsSL "https://dl.k8s.io/release/${KUBECTL_VER}/bin/linux/amd64/kubectl" \
    -o /usr/local/bin/kubectl && \
    chmod +x /usr/local/bin/kubectl
+
+RUN curl -s https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh | bash \
+   && mv kustomize /usr/local/bin/ \
+   && chmod +x /usr/local/bin/kustomize
 
 # ── Fetch latest Argo CD CLI ────────────────────────────────────────────────
 RUN curl -fsSL \
@@ -26,10 +29,10 @@ RUN curl -fsSL \
    chmod +x /usr/local/bin/argocd
 
 # ── Fetch latest Talosctl ──────────────────────────────────────────────────
-RUN curl -sL https://talos.dev/install | sh
+RUN curl -sL https://talos.dev/install | bash
 
 # ── Fetch latest OpenTofu ─────────────────────────────────────────────────
 COPY --from=tofu /usr/local/bin/tofu /usr/local/bin/tofu
 
 # ── Fetch latest Helm ─────────────────────────────────────────────────
-RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | sh
+RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
