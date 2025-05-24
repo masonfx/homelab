@@ -8,7 +8,7 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/theepicsaxguy/homelab
+        repoURL: https://github.com/masonfx/homelab
         revision: main
         directories:
           - path: k8s/applications/external/*
@@ -22,7 +22,7 @@ spec:
     spec:
       project: external
       source:
-        repoURL: https://github.com/theepicsaxguy/homelab
+        repoURL: https://github.com/masonfx/homelab
         targetRevision: main
         path: '{{ path }}'
       destination:

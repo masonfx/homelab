@@ -11,16 +11,16 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/theepicsaxguy/homelab.git
+        repoURL: https://github.com/masonfx/homelab.git
         revision: main
         directories:
           - path: k8s/applications/media
-          - path: k8s/applications/tools
-          - path: k8s/applications/ai
+          #- path: k8s/applications/tools
+          #- path: k8s/applications/ai
           - path: k8s/applications/external
-          - path: k8s/applications/web
-          - path: k8s/applications/network
-          - path: k8s/applications/automation
+          #- path: k8s/applications/web
+          #- path: k8s/applications/network
+          #- path: k8s/applications/automation
   template:
     metadata:
       name: 'apps-{{ path.basename }}'
@@ -31,7 +31,7 @@ spec:
     spec:
       project: applications
       source:
-        repoURL: https://github.com/theepicsaxguy/homelab.git
+        repoURL: https://github.com/masonfx/homelab.git
         targetRevision: main
         path: '{{ path }}'
         kustomize: {}  # Let Kustomize handle naming
