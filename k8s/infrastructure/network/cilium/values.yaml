@@ -78,7 +78,7 @@ envoy:
 
 hubble:
   peerService:
-    clusterDomain: kube.pc-tips.se
+    clusterDomain: dev.masonfox.me
   enabled: true
   relay:
     enabled: true

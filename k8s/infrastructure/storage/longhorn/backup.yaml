@@ -5,6 +5,5 @@ metadata:
   namespace: longhorn-system
 data:
   default-resource.yaml: |
-    "backup-target": "s3://longhorn@us-west-1/"
-    "backup-target-credential-secret": "longhorn-minio-credentials"
+    "backup-target": "nfs://192.168.10.5:/mnt/files/share/longhorn-backup"
     "backupstore-poll-interval": "180"

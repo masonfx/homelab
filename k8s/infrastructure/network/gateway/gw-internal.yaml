@@ -12,22 +12,22 @@ spec:
     - protocol: HTTPS
       port: 443
       name: https-gateway
-      hostname: "*.pc-tips.se"
+      hostname: "*.dev.masonfox.me"
       tls:
         certificateRefs:
           - kind: Secret
-            name: cert-pc-tips
+            name: cert-dev-masonfox-me
       allowedRoutes:
         namespaces:
           from: All
     - protocol: HTTPS
       port: 443
       name: https-domain-gateway
-      hostname: pc-tips.se
+      hostname: dev.masonfox.me
       tls:
         certificateRefs:
           - kind: Secret
-            name: cert-pc-tips
+            name: cert-dev-masonfox-me
 
     # Add TCP listeners for Omada device mgmt
     - protocol: TCP
