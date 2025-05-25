@@ -51,8 +51,8 @@ module "talos" {
       ip            = "${local.cluster_subnet}.21"
       mac_address   = "bc:24:11:e6:ba:21"
       vm_id         = 8101
-      cpu           = 2
-      ram_dedicated = 4096
+      cpu           = 4
+      ram_dedicated = 6144
       update        = false
       igpu          = false
     }
@@ -63,8 +63,8 @@ module "talos" {
       ip            = "${local.cluster_subnet}.22"
       mac_address   = "bc:24:11:e6:ba:22"
       vm_id         = 8102
-      cpu           = 2
-      ram_dedicated = 4096
+      cpu           = 4
+      ram_dedicated = 6144
       update        = false
       igpu          = false
     }
@@ -76,7 +76,7 @@ module "talos" {
       mac_address   = "bc:24:11:e6:ba:23"
       vm_id         = 8103
       cpu           = 2
-      ram_dedicated = 4096
+      ram_dedicated = 6144
       update        = false
       igpu          = false
     }
@@ -87,14 +87,14 @@ module "talos" {
       ip            = "${local.cluster_subnet}.31"
       mac_address   = "bc:24:11:e6:ba:31"
       vm_id         = 8201
-      cpu           = 8
-      ram_dedicated = 10240
+      cpu           = 6
+      ram_dedicated = 8192
       igpu          = false
       update        = false
       disks = {
         longhorn = {
           device     = "/dev/sdb"
-          size       = "180G"
+          size       = "1024G"
           type       = "scsi"
           mountpoint = "/var/lib/longhorn"
         }
@@ -114,7 +114,7 @@ module "talos" {
     #   disks = {
     #     longhorn = {
     #       device     = "/dev/sdb"
-    #       size       = "180G"
+    #       size       = "1024G"
     #       type       = "scsi"
     #       mountpoint = "/var/lib/longhorn"
     #     }
@@ -128,13 +128,13 @@ module "talos" {
       mac_address   = "bc:24:11:e6:ba:33"
       vm_id         = 8202
       cpu           = 2
-      ram_dedicated = 10240
+      ram_dedicated = 8196
       igpu          = true
       update        = false
       disks = {
         longhorn = {
           device     = "/dev/sdb"
-          size       = "180G"
+          size       = "1024G"
           type       = "scsi"
           mountpoint = "/var/lib/longhorn"
         }
