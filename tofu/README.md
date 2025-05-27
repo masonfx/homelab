@@ -10,13 +10,16 @@ tofu output -raw talos_config > ~/.talos/config
 tofu output -raw kube_config > ~/.kube/config
 chmod 600 ~/.talos/config ~/.kube/config
 
-Ensure all the CRDs are deployed:
-kubectl apply -k k8s/infrastructure/crds
-
 ## infrsastructure set up
 
 Ensure all the CRDs are deployed:
 kubectl apply -k k8s/infrastructure/crds
+
+### CoreDNS
+
+#### coreDNS build
+
+kustomize build --enable-helm k8s/infrastructure/network/coredns | kubectl apply -f -
 
 ### Cilium CNI
 
@@ -67,6 +70,18 @@ kustomize build --enable-helm k8s/infrastructure/controllers/cert-manager | kube
 
 kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=webhook -n cert-manager --timeout=90s
 
+### Longhorn storage
+
+#### Longhorn files adaptation
+
+Update:
+  k8s/infrastructure/storage/longhorn/http-route.yaml to your domain
+  k8s/infrastructure/controllers/argocd/externalsecret.yaml to your authentik clientID and secret (this comes later)
+
+#### Longhorn build
+
+kustomize build --enable-helm k8s/infrastructure/storage/longhorn | kubectl apply -f -
+
 ### ArgoCD
 
 #### ArgoCD files adaptation
@@ -84,21 +99,3 @@ kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=argocd-server -
 #### ArgoCD initial configuration
 
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d
-
-### Longhorn storage
-
-#### Longhorn files adaptation
-
-Update:
-  k8s/infrastructure/storage/longhorn/http-route.yaml to your domain
-  k8s/infrastructure/controllers/argocd/externalsecret.yaml to your authentik clientID and secret (this comes later)
-
-#### Longhorn build
-
-kustomize build --enable-helm k8s/infrastructure/storage/longhorn | kubectl apply -f -
-
-### CoreDNS
-
-#### coreDNS build
-
-kustomize build --enable-helm k8s/infrastructure/network/coredns | kubectl apply -f -

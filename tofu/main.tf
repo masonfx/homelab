@@ -52,7 +52,7 @@ module "talos" {
       mac_address   = "bc:24:11:e6:ba:21"
       vm_id         = 8101
       cpu           = 4
-      ram_dedicated = 6144
+      ram_dedicated = 4096
       update        = false
       igpu          = false
     }
@@ -64,7 +64,7 @@ module "talos" {
       mac_address   = "bc:24:11:e6:ba:22"
       vm_id         = 8102
       cpu           = 4
-      ram_dedicated = 6144
+      ram_dedicated = 4096
       update        = false
       igpu          = false
     }
@@ -76,7 +76,7 @@ module "talos" {
       mac_address   = "bc:24:11:e6:ba:23"
       vm_id         = 8103
       cpu           = 2
-      ram_dedicated = 6144
+      ram_dedicated = 4096
       update        = false
       igpu          = false
     }
