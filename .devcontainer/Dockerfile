@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 # ── Set up non-root user ────────────────────────────────────────────────────
 RUN groupadd -g 1000 devfx && useradd -m -u 1000 -g devfx devfx
 
-# ── Fetch latest kubectl ───────────────────────────────────────────────────
+# ── Fetch latest kubectl and kustomize ──────────────────────────────────────
 RUN KUBECTL_VER="$(curl -fsSL https://dl.k8s.io/release/stable.txt)" && \
    curl -fsSL "https://dl.k8s.io/release/${KUBECTL_VER}/bin/linux/amd64/kubectl" \
    -o /usr/local/bin/kubectl && \
@@ -36,3 +36,8 @@ COPY --from=tofu /usr/local/bin/tofu /usr/local/bin/tofu
 
 # ── Fetch latest Helm ─────────────────────────────────────────────────
 RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+RUN CILIUM_CLI_VERSION=$(curl -s https://raw.githubusercontent.com/cilium/cilium-cli/main/stable.txt) \
+   && curl -L --fail --remote-name-all https://github.com/cilium/cilium-cli/releases/download/${CILIUM_CLI_VERSION}/cilium-linux-amd64.tar.gz \
+   && tar xzvfC cilium-linux-amd64.tar.gz /usr/local/bin \
+   && rm cilium-linux-amd64.tar.gz

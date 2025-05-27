@@ -7,7 +7,7 @@ spec:
   dnsNames:
     - "*.dev.masonfox.me"
     - dev.masonfox.me
-    - cilium-gateway-external.gateway.svc.kube.dev.masonfox.me
+    - cilium-gateway-external.gateway.svc.dev.masonfox.me
   issuerRef:
     group: cert-manager.io
     kind: ClusterIssuer
