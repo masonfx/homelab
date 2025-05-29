@@ -9,3 +9,5 @@ resources:
 - https://raw.githubusercontent.com/external-secrets/external-secrets/v0.17.0/deploy/crds/bundle.yaml # renovate: https://charts.external-secrets.io
 - https://github.com/cert-manager/cert-manager/releases/download/v1.17.2/cert-manager.crds.yaml # renovate: https://charts.jetstack.io
 - https://raw.githubusercontent.com/cert-manager/trust-manager/main/deploy/crds/trust.cert-manager.io_bundles.yaml
+#- https://github.com/prometheus-operator/prometheus-operator/releases/download/v0.82.2/bundle.yaml # renovate: github-releases=prometheus-operator/prometheus-operator
+#- https://raw.githubusercontent.com/longhorn/longhorn/master/deploy/longhorn.yaml # renovate: https://charts.longhorn.io

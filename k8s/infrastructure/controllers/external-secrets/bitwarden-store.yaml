@@ -5,15 +5,15 @@ metadata:
 spec:
   provider:
     bitwardensecretsmanager:
-      apiURL: https://api.bitwarden.com
-      identityURL: https://identity.bitwarden.com
+      apiURL: https://api.bitwarden.com.
+      identityURL: https://identity.bitwarden.com.
       auth:
         secretRef:
           credentials:
             key: token
             name: bitwarden-access-token
             namespace: external-secrets
-      bitwardenServerSDKURL: https://bitwarden-sdk-server.external-secrets.svc.dev.masonfox.me:9998
+      bitwardenServerSDKURL: https://bitwarden-sdk-server.external-secrets.svc.cluster.local:9998
       caProvider:
         type: Secret
         name: bitwarden-tls-certs

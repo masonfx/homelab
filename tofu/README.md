@@ -17,6 +17,16 @@ kubectl apply -k k8s/infrastructure/crds
 
 ### CoreDNS
 
+#### CoreDNS files adaptation
+
+Update k8s/infrastructure/network/coredns/configmap.yaml to your environment
+
+#### coreDNS build
+
+kustomize build --enable-helm k8s/infrastructure/network/coredns | kubectl delete -f -
+
+kustomize build --enable-helm k8s/infrastructure/network/coredns | kubectl apply -f -
+
 ### Cilium CNI
 
 #### Cilium files adaptation
@@ -29,13 +39,21 @@ kubectl kustomize --enable-helm k8s/infrastructure/network/cilium | kubectl appl
 
 kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=cilium -n kube-system --timeout=90s
 
-#### CoreDNS files adaptation
+#### Cilium test
 
-Update k8s/infrastructure/network/coredns/configmap.yaml to your environment
+kubectl create ns cilium-test
+kubectl label namespace cilium-test pod-security.kubernetes.io/enforce=privileged
+kubectl apply --namespace=cilium-test -f <https://raw.githubusercontent.com/cilium/cilium/HEAD/examples/kubernetes/connectivity-check/connectivity-check.yaml>
+kubectl get pods -n cilium-test
+kubectl delete ns cilium-test
 
-#### coreDNS build
+### Cert Manager
 
-kustomize build --enable-helm k8s/infrastructure/network/coredns | kubectl apply -f -
+Update k8s/infrastructure/controllers/cert-manager/cert-manager-secrets-external.yaml to your bitwarden secrets-manager keys
+
+kustomize build --enable-helm k8s/infrastructure/controllers/cert-manager | kubectl apply -f -
+
+kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=webhook -n cert-manager --timeout=90s
 
 ### External-secrets
 
@@ -65,14 +83,6 @@ Create the certificate trust secret:
 kubectl create secret generic letsencrypt-ca \
   --namespace external-secrets \
   --from-file=ca.crt=isrgrootx1.pem
-
-### Cert Manager
-
-Update k8s/infrastructure/controllers/cert-manager/cert-manager-secrets-external.yaml to your bitwarden secrets-manager keys
-
-kustomize build --enable-helm k8s/infrastructure/controllers/cert-manager | kubectl apply -f -
-
-kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=webhook -n cert-manager --timeout=90s
 
 ### Longhorn storage
 
