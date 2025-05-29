@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: whoami
   annotations:
-    io.cilium/lb-ipam-ips: 10.25.150.225
+    io.cilium/lb-ipam-ips: 192.168.10.225
 spec:
   type: LoadBalancer
   selector:

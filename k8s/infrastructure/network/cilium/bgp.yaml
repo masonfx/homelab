@@ -12,7 +12,7 @@ spec:
       holdTimeSeconds: 90
       keepAliveTimeSeconds: 30
       peerASN: 65510
-      peerAddress: 10.25.150.1/32
+      peerAddress: 192.168.10.1/32
       peerPort: 179
     serviceSelector:
      matchExpressions:

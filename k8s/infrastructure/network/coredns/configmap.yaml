@@ -24,7 +24,7 @@ data:
         }
 
         # Forwarding to external DNS servers for non-cluster queries
-        forward . 10.25.150.1 1.1.1.1 8.8.8.8 {
+        forward . 192.168.10.1 {
             policy sequential
         }
 

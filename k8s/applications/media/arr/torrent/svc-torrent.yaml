@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: torrent
   annotations:
-    io.cilium/lb-ipam-ips: 10.25.150.227
+    io.cilium/lb-ipam-ips: 192.168.10.227
 spec:
   type: LoadBalancer
   selector:

@@ -38,7 +38,7 @@ data:
         }
 
         # Forwarding to external DNS servers for non-cluster queries
-        forward . 9.9.9.9 9.9.9.10
+        forward . 192.168.10.1
 
         cache 30
         loop

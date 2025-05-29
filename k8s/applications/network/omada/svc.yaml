@@ -4,7 +4,7 @@ metadata:
   name: omada-svc
   namespace: omada
   annotations:
-    io.cilium/lb-ipam-ips: 10.25.150.226
+    io.cilium/lb-ipam-ips: 192.168.10.226
 spec:
   type: LoadBalancer
   selector:

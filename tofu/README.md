@@ -17,10 +17,6 @@ kubectl apply -k k8s/infrastructure/crds
 
 ### CoreDNS
 
-#### coreDNS build
-
-kustomize build --enable-helm k8s/infrastructure/network/coredns | kubectl apply -f -
-
 ### Cilium CNI
 
 #### Cilium files adaptation
@@ -32,6 +28,14 @@ Update k8s/infrastructure/network/cilium/values.yaml to your domain name
 kubectl kustomize --enable-helm k8s/infrastructure/network/cilium | kubectl apply -f -
 
 kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=cilium -n kube-system --timeout=90s
+
+#### CoreDNS files adaptation
+
+Update k8s/infrastructure/network/coredns/configmap.yaml to your environment
+
+#### coreDNS build
+
+kustomize build --enable-helm k8s/infrastructure/network/coredns | kubectl apply -f -
 
 ### External-secrets
 
